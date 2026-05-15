@@ -1,56 +1,56 @@
 
-ROM used:   660/32768 (2%)
-            660/32768 (2%) including unused fragments
+ROM used:   708/32768 (2%)
+            708/32768 (2%) including unused fragments
 
             0.5 Average locations per line
-            12.5 Average locations per statement
+            13.4 Average locations per statement
 
 RAM used:   26/2048 (1%) at main() level
-            34/2048 (2%) worst case
+            36/2048 (2%) worst case
 
 Stack used: 5 worst case (2 in main + 3 for interrupts)
 Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  123    53 100  main.c
-  837     0   0  C:\Program Files (x86)\PICC\devices\18F4550.h
+  124    53 100  main.c
+  837     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\18F4550.h
   377     0   0  registries.h
 ----- -----
- 1337    53 Total
+ 1338    53 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     26   2    1             @delay_ms1
 0     38   3    0             @const912
-0     74   6    5   166  4.4  setPWM1Duty10
+0    122   9    7   256  6.5  setPWM1Duty10
 0     28   2    0    94  1.7  adcSetup
-0     48   4    4   197  4.3  readADC0
+0     48   3    4   197  4.3  readADC0
 0     54   4    2   108  3.0  ccpSetup
 0     28   2    1    98  2.5  actualizarT2CON
 0     14   1    0    94  1.7  enableExternalInterrupts
-0     20   2    0   102  3.3  externalInterrupt
-0    184  14    2   497  5.0  MAIN
+0     20   1    0   102  3.3  externalInterrupt
+0    184  13    2   497  5.0  MAIN
  Inline         0             @cinit1
 
 Program metrics:
     Functions               8
     Statements              53
     Comments                488
-    Volume (V)              2159
-    Difficulty (D)          25.7
-    Effort to implement (E) 55458
-    Time to implement (T)   51 minutes
-    Est Delivered Bugs (B)  0
+    Volume (V)              2291
+    Difficulty (D)          27.6
+    Effort to implement (E) 63117
+    Time to implement (T)   58 minutes
+    Est Delivered Bugs (B)  1
     Cyclomatic Complexity   3
-    Maintainability (MI)    89
+    Maintainability (MI)    88
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     0  4  
 00008-00094   142  0  
-00096-07FFE   514  32104  
+00096-07FFE   562  32056  
 
 
 

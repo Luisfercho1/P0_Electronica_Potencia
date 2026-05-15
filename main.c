@@ -4,7 +4,7 @@
 
 #use delay(clock = 1000000)
 
-#include "PWM/registries.h"
+#include "registries.h"
 
 int8 prescalerIndex = 0;
 
@@ -15,8 +15,9 @@ const int8 prescalerBits[3] = {
 };
 
 void setPWM1Duty10(int16 duty) {
-  if (duty > 1023) {
-    duty = 1023;
+  int16 maxDuty = (((int16)PR2 + 1) * 4) - 1;
+  if (duty > maxDuty) {
+    duty = maxDuty;
   }
 
   CCPR1L = duty >> 2;
@@ -51,11 +52,11 @@ int16 readADC0(void) {
 }
 
 void ccpSetup(void) {
-  PR2 = 250; // Frecuencia PWM de aproximadamente 1 kHz (con Fosc = 1 MHz)
-  //^ Sólo a este le mueves we
+  PR2 = 4; // Frecuencia PWM de aproximadamente 50 kHz (con Fosc = 1 MHz)
+  //^ Cambiado para 50 kHz
 
   CCP1CON = 0x8C;
-  setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%);
+  setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%
 }
 
 void actualizarT2CON(void) {
