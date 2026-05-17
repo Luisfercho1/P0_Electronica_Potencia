@@ -1,4 +1,4 @@
 >>> Warning 216 "main.c" Line 123(1,2): Interrupts disabled during call to prevent re-entrancy:  (actualizarT2CON)
-      Memory usage:   ROM=2%      RAM=1% - 2%
+      Memory usage:   ROM=3%      RAM=1% - 2%
       0 Errors,  1 Warnings.
 Build Successful.

@@ -1,8 +1,8 @@
 #include <18F4550.h>
 #device ADC = 10
-#fuses INTRC, PLL1, CPUDIV1, NOWDT, NOPROTECT, NOLVP, NOMCLR
+#fuses HS, CPUDIV1, NOWDT, NOPROTECT, NOLVP, NOMCLR
 
-#use delay(clock = 1000000)
+#use delay(clock = 20000000)
 
 #include "registries.h"
 
@@ -52,8 +52,7 @@ int16 readADC0(void) {
 }
 
 void ccpSetup(void) {
-  PR2 = 4; // Frecuencia PWM de aproximadamente 50 kHz (con Fosc = 1 MHz)
-  //^ Cambiado para 50 kHz
+  PR2 = 99; // Frecuencia PWM de 50 kHz con Fosc = 20 MHz y prescaler 1:1
 
   CCP1CON = 0x8C;
   setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%
@@ -90,7 +89,7 @@ void externalInterrupt(void) {
 }
 
 void main(void) {
-  OSCCON = 0x42;
+  // Usando oscilador externo HS de 20 MHz, no se requiere configurar OSCCON
 
   adcSetup();
 
@@ -109,12 +108,13 @@ void main(void) {
 
   while (TRUE) {
     int16 adcValue;
+    int16 maxDuty = (((int16)PR2 + 1) * 4) - 1;
 
     adcValue = readADC0();
-    if (adcValue > (((int16)PR2 + 1) * 4 - 1)) {
-      adcValue = (((int16)PR2 + 1) * 4 - 1);
+    adcValue = (int16)(((long)adcValue * maxDuty) / 1023);
+    if (adcValue < 0) {
+      adcValue = 0;
     }
-    //^ Esto es para evitar que el valor del ADC exceda el máximo permitido por el periodo actual del PWM, causando que truene.
 
     setPWM1Duty10(adcValue);
 
