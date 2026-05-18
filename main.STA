@@ -1,9 +1,9 @@
 
-ROM used:   668/32768 (2%)
-            668/32768 (2%) including unused fragments
+ROM used:   672/32768 (2%)
+            672/32768 (2%) including unused fragments
 
             0.5 Average locations per line
-            12.8 Average locations per statement
+            12.7 Average locations per statement
 
 RAM used:   29/2048 (1%) at main() level
             36/2048 (2%) worst case
@@ -13,20 +13,20 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  123    52 100  main.c
+  126    53 100  main.c
   837     0   0  C:\Program Files (x86)\PICC\devices\18F4550.h
-  377     0   0  registries.h
+  382     0   0  registries.h
 ----- -----
- 1337    52 Total
+ 1345    53 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
 0     40   3    1             @delay_ms1
-0     20   1    0             @const912
+0     20   1    0             @const913
 0     74   6    5    166  4.4  setPWM1Duty10
 0     30   2    0     94  1.7  adcSetup
 0     54   4    4    197  4.3  readADC0
-0     54   4    2    108  3.0  ccpSetup
+0     58   4    2    129  3.0  ccpSetup
 0     18   1    0     98  2.5  actualizarT2CON
 0     14   1    0     94  1.7  enableExternalInterrupts
 0     20   1    0    102  3.3  externalInterrupt
@@ -35,22 +35,22 @@ Page ROM  %  RAM    Vol Diff  Functions:
 
 Program metrics:
     Functions               8
-    Statements              52
-    Comments                488
-    Volume (V)              2125
-    Difficulty (D)          25.6
-    Effort to implement (E) 54467
-    Time to implement (T)   50 minutes
+    Statements              53
+    Comments                491
+    Volume (V)              2159
+    Difficulty (D)          25.7
+    Effort to implement (E) 55458
+    Time to implement (T)   51 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   3
-    Maintainability (MI)    89
+    Maintainability (MI)    90
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     0  4  
 00008-000AC   166  0  
-000AE-07FFE   498  32096  
+000AE-07FFE   502  32092  
 
 
 

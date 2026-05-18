@@ -54,7 +54,13 @@ void ccpSetup(void) {
   PR2 = 99; // Frecuencia PWM de aproximadamente 1 kHz (con Fosc = 1 MHz)
   //^ Sólo a este le mueves we
 
-  CCP1CON = 0x8C;
+  CCP1CON = 0x8E; // Modo PWM, con P1A y P1B salidas moduladas y con  dead-band control
+
+  // Dead-band = 2us
+  // 1 cuenta = 200ns con Fosc=20MHz
+  // 10 cuentas = 2us
+  ECCP1DEL = 10; // Dead-band de aprozimadamente 2 us (con Fosc = 20 MHz)
+
   setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%);
 }
 
