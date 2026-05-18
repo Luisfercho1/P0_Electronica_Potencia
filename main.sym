@@ -22,33 +22,23 @@
 014     @INTERRUPT_AREA
 015     @INTERRUPT_AREA
 016     @INTERRUPT_AREA
-017     prescalerIndex
-018-019 MAIN.adcValue
-01A-01B readADC0.sum
-01A     @delay_ms1.P1
-01A     ccpSetup.@SCRATCH1
-01A     MAIN.@SCRATCH1
-01B     ccpSetup.@SCRATCH2
-01B     MAIN.@SCRATCH2
-01C-01D mapADCToDuty.adcValue
-01C     readADC0.i
-01C-01D setPWM1Duty10.duty
-01D     readADC0.@SCRATCH1
-01E-01F setPWM1Duty10.maxDuty
-01E-01F mapADCToDuty.maxDuty
-01E     readADC0.@SCRATCH2
-020-021 @MUL1616.P1
-020     setPWM1Duty10.@SCRATCH1
-020     mapADCToDuty.@SCRATCH1
-021     setPWM1Duty10.@SCRATCH2
-021     mapADCToDuty.@SCRATCH2
-022-023 @DIV1616.P1
-022-023 @MUL1616.P2
-022     setPWM1Duty10.@SCRATCH3
-024-025 @DIV1616.P1
-024     @MUL1616.@SCRATCH1
-026     @DIV1616.@SCRATCH1
-027     actualizarT2CON.@SCRATCH1
+017     @INTERRUPT_AREA
+018     @INTERRUPT_AREA
+019     @INTERRUPT_AREA
+01A     prescalerIndex
+01B-01C MAIN.adcValue
+01D-01E readADC0.result
+01D     @delay_ms1.P1
+01D     ccpSetup.@SCRATCH1
+01D     MAIN.@SCRATCH1
+01E     ccpSetup.@SCRATCH2
+01E     MAIN.@SCRATCH2
+01F-020 setPWM1Duty10.duty
+01F     readADC0.@SCRATCH1
+020     readADC0.@SCRATCH2
+021     setPWM1Duty10.@SCRATCH1
+022     setPWM1Duty10.@SCRATCH2
+023     setPWM1Duty10.@SCRATCH3
 F80     PORTA
 F80.0   PORTA0
 F80.1   PORTA1
@@ -76,9 +66,9 @@ F82.4   PORTC4
 F82.5   PORTC5
 F82.6   PORTC6
 F82.7   PORTC7
-F83     PSP_DATA
 F83     PORTD
 F83.0   PORTD0
+F83     PSP_DATA
 F83.1   PORTD1
 F83.2   PORTD2
 F83.3   PORTD3
@@ -92,8 +82,8 @@ F84.1   PORTE1
 F84.2   PORTE2
 F84.3   PORTE3
 F84.7   PORTE7
-F89     LATA
 F89.0   LATA0
+F89     LATA
 F89.1   LATA1
 F89.2   LATA2
 F89.3   LATA3
@@ -128,8 +118,8 @@ F8C.4   LATD4
 F8C.5   LATD5
 F8C.6   LATD6
 F8C.7   LATD7
-F8D.0   LATE0
 F8D     LATE
+F8D.0   LATE0
 F8D.1   LATE1
 F8D.2   LATE2
 F8D.3   LATE3
@@ -142,8 +132,8 @@ F92.4   TRISA4
 F92.5   TRISA5
 F92.6   TRISA6
 F92.7   TRISA7
-F93     TRISB
 F93.0   TRISB0
+F93     TRISB
 F93.1   TRISB1
 F93.2   TRISB2
 F93.3   TRISB3
@@ -151,8 +141,8 @@ F93.4   TRISB4
 F93.5   TRISB5
 F93.6   TRISB6
 F93.7   TRISB7
-F94.0   TRISC0
 F94     TRISC
+F94.0   TRISC0
 F94.1   TRISC1
 F94.2   TRISC2
 F94.3   TRISC3
@@ -160,8 +150,8 @@ F94.4   TRISC4
 F94.5   TRISC5
 F94.6   TRISC6
 F94.7   TRISC7
-F95.0   TRISD0
 F95     TRISD
+F95.0   TRISD0
 F95.1   TRISD1
 F95.2   TRISD2
 F95.3   TRISD3
@@ -169,8 +159,8 @@ F95.4   TRISD4
 F95.5   TRISD5
 F95.6   TRISD6
 F95.7   TRISD7
-F96.0   TRISE0
 F96     TRISE
+F96.0   TRISE0
 F96.1   TRISE1
 F96.2   TRISE2
 F9D.0   TMR1IE
@@ -209,8 +199,8 @@ FAB.4   CREN
 FAB.5   SREN
 FAB.6   RX9
 FAB.7   SPEN
-FAC     TXSTA
 FAC.0   TX9D
+FAC     TXSTA
 FAC.1   TRMT
 FAC.2   BRGH
 FAC.3   SENDB
@@ -229,9 +219,10 @@ FB3     TMR3H
 FB4     CMCON
 FB4.6   C1OUT
 FB4.7   C2OUT
+FB7     ECCP1DEL
 FB8     BAUDCON
-FB8.1   ABDEN
 FB8.1   WUE
+FB8.1   ABDEN
 FB8.3   BRG16
 FB8.4   TXCKP
 FB8.5   RXDTP
@@ -239,14 +230,14 @@ FB8.6   RCIDL
 FB8.7   ABDOVF
 FBA     CCP2CON
 FBB     CCP_2
-FBB     CCPR2L
 FBB     CCP_2_LOW
-FBC     CCPR2H
+FBB     CCPR2L
 FBC     CCP_2_HIGH
+FBC     CCPR2H
 FBD     CCP1CON
-FBE     CCP_1
-FBE     CCP_1_LOW
 FBE     CCPR1L
+FBE     CCP_1_LOW
+FBE     CCP_1
 FBF     CCP_1_HIGH
 FBF     CCPR1H
 FC0     ADCON2
@@ -272,8 +263,8 @@ FC6     SSPCON1
 FC6.4   CKP
 FC6.6   SSPOV
 FC6.7   WCOL
-FC7     SSPSTAT
 FC7.0   BF
+FC7     SSPSTAT
 FC7.1   UA
 FC7.2   RW
 FC7.3   S
@@ -286,8 +277,8 @@ FCA     T2CON
 FCA.2   TMR2ON
 FCB     PR2
 FCC     TMR2
-FCD.0   TMR1ON
 FCD     T1CON
+FCD.0   TMR1ON
 FCE     TMR1L
 FCF     TMR1H
 FD0.7   IPEN
@@ -304,12 +295,12 @@ FD5     T0CON
 FD5.7   TMR0ON
 FD6     TMR0L
 FD7     TMR0H
-FE1-FE2 @WRITE_PACKED_MEMORY.P1
-FE1-FE2 @READ_PACKED_MEMORY.P2
-FE9-FEA @READ_PROGRAM_MEMORY.P1
-FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
 FE9-FEA @READ_PACKED_MEMORY.P3
-FE9-FEA @WRITE_PACKED_MEMORY.P4
+FE9-FEA @READ_PROGRAM_MEMORY.P4
 FF0.0   INT1IF
 FF0     INTCON3
 FF0.1   INT2IF
@@ -333,32 +324,29 @@ FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
 FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-000096  prescalerBits.call
-0000B8  prescalerBits.data
-0000BC  actualizarT2CON
-0000D8  externalInterrupt
-0000EC  adcSetup
-00010A  setPWM1Duty10
-000184  ccpSetup
-0001BA  enableExternalInterrupts
-0001C8  readADC0
-000220  @MUL1616
-000240  @DIV1616
-000284  mapADCToDuty
-0002E0  @delay_ms1
-000308  MAIN
-000308  @cinit1
-00031C  @cinit2
+0000AE  prescalerBits.call
+0000BE  prescalerBits.data
+0000C2  actualizarT2CON
+0000D4  externalInterrupt
+0000E8  adcSetup
+000106  setPWM1Duty10
+000150  ccpSetup
+00018A  enableExternalInterrupts
+000198  readADC0
+0001CE  @delay_ms1
+0001F6  MAIN
+0001F6  @cinit1
+00020A  @cinit2
 
 Project Directory:
-    C:\Users\kiri1\AUTOMATIZACION\P0_Electronica_Potencia\
+    D:\AUTOMATIZACION\P0_Electronica_Potencia\
 
 Project Files:
-    main.c                                                  [17-may.-26 13:02  CRC=9126DA2F]
-    ..\..\..\..\Program Files (x86)\PICC\devices\18F4550.h  [12-nov.-13 14:35  CRC=5337E248]
-    registries.h                                            [07-may.-26 15:55  CRC=379CD552]
+    main.c                                                  [17-may.-26 19:29  CRC=8FF053E1]
+    C:\Program Files (x86)\PICC\devices\18F4550.h           [18-abr.-14 16:57  CRC=68697302]
+    registries.h                                            [17-may.-26 19:23  CRC=BAA5B1A3]
 
-Source signature=5398671B
+Source signature=6DA52A29
 
 Units:
     main (main)
@@ -370,6 +358,7 @@ Compiler Settings:
     Opt Level:      9
     Short,Int,Long: UNSIGNED: 1,8,16
     Float,Double:   32,32
+    Compile Mode:       CCS5
 
 Output Files:
     Errors:      main.err

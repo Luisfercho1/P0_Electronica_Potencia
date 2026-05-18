@@ -280,11 +280,16 @@
     #BYTE CCP2CON = 0xFBA     // Configuración CCP2
     #BYTE CCPR2L  = 0xFBB     // Dato bajo CCP2
     #BYTE CCPR2H  = 0xFBC     // Dato alto CCP2
+
+    #BYTE ECCP1DEL = 0xFB7    //PWM DEAD-BAND DELAY REGISTER
+
     /*----BITS----*/
     #BIT CCP2IF   = 0xFA1.0   // BYTE: PIR2    |  Bandera interrupción CCP2
     #BIT CCP2IE   = 0xFA0.0   // BYTE: PIE2    |  Habilitar interrupción CCP2
     #BIT CCP2IP   = 0xFA2.0   // BYTE: IPR2    |  Prioridad interrupción CCP2
-    
+
+
+
     /*-_-_-_-_-_-_-_-_-_-_-_-_-_-*/
 
     /*-_-_-EUSART-_-_-*/
