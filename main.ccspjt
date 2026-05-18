@@ -1,7 +1,7 @@
 [PROJECT]
 Target=main.hex
 Processor_Text=PIC18F4550
-CCSVersion=5.015
+CCSVersion=5.025
 Compiler=PCH
 [Target Data]
 FileList=main.c

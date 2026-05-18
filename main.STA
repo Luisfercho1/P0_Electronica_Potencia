@@ -1,59 +1,56 @@
 
-ROM used:   870/32768 (3%)
-            870/32768 (3%) including unused fragments
+ROM used:   668/32768 (2%)
+            668/32768 (2%) including unused fragments
 
-            0.7 Average locations per line
-            16.7 Average locations per statement
+            0.5 Average locations per line
+            12.8 Average locations per statement
 
-RAM used:   26/2048 (1%) at main() level
-            40/2048 (2%) worst case
+RAM used:   29/2048 (1%) at main() level
+            36/2048 (2%) worst case
 
 Stack used: 5 worst case (2 in main + 3 for interrupts)
 Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  124    52 100  main.c
-  837     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\18F4550.h
+  123    52 100  main.c
+  837     0   0  C:\Program Files (x86)\PICC\devices\18F4550.h
   377     0   0  registries.h
 ----- -----
- 1338    52 Total
+ 1337    52 Total
 
-Page ROM  %  RAM   Vol Diff  Functions:
----- --- --- ---   --- ----  ----------
-0     40   2    1             @delay_ms1
-0     38   2    0             @const912
-0    122   7    7   256  6.5  setPWM1Duty10
-0     30   2    0    94  1.7  adcSetup
-0     88   5    5   345  7.0  readADC0
-0     92   5    6   141  5.3  mapADCToDuty
-0     32   2    5             @MUL1616
-0     68   4    5             @DIV1616
-0     54   3    2   108  3.0  ccpSetup
-0     28   2    1    98  2.5  actualizarT2CON
-0     14   1    0    94  1.7  enableExternalInterrupts
-0     20   1    0   102  3.3  externalInterrupt
-0     98   6    2   285  2.3  MAIN
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     40   3    1             @delay_ms1
+0     20   1    0             @const912
+0     74   6    5    166  4.4  setPWM1Duty10
+0     30   2    0     94  1.7  adcSetup
+0     54   4    4    197  4.3  readADC0
+0     54   4    2    108  3.0  ccpSetup
+0     18   1    0     98  2.5  actualizarT2CON
+0     14   1    0     94  1.7  enableExternalInterrupts
+0     20   1    0    102  3.3  externalInterrupt
+0    174  13    2    470  5.0  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               9
+    Functions               8
     Statements              52
     Comments                488
-    Volume (V)              2512
-    Difficulty (D)          31.7
-    Effort to implement (E) 79530
-    Time to implement (T)   1 hours, 14 minutes
-    Est Delivered Bugs (B)  1
+    Volume (V)              2125
+    Difficulty (D)          25.6
+    Effort to implement (E) 54467
+    Time to implement (T)   50 minutes
+    Est Delivered Bugs (B)  0
     Cyclomatic Complexity   3
-    Maintainability (MI)    67
+    Maintainability (MI)    89
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     0  4  
-00008-00094   142  0  
-00096-07FFE   724  31894  
+00008-000AC   166  0  
+000AE-07FFE   498  32096  
 
 
 

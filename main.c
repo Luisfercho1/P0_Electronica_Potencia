@@ -1,6 +1,6 @@
 #include <18F4550.h>
 #device ADC = 10
-#fuses HS, CPUDIV1, NOWDT, NOPROTECT, NOLVP, NOMCLR
+#fuses HS, PLL1, CPUDIV1, NOWDT, NOPROTECT, NOLVP, NOMCLR
 
 #use delay(clock = 20000000)
 
@@ -9,15 +9,14 @@
 int8 prescalerIndex = 0;
 
 const int8 prescalerBits[3] = {
-    0b00, // 1:1BB
+    0b00, // 1:1
     0b01, // 1:4
     0b10  // 1:16
 };
 
 void setPWM1Duty10(int16 duty) {
-  int16 maxDuty = (((int16)PR2 + 1) * 4) - 1;
-  if (duty > maxDuty) {
-    duty = maxDuty;
+  if (duty > 1023) {
+    duty = 1023;
   }
 
   CCPR1L = duty >> 2;
@@ -52,10 +51,11 @@ int16 readADC0(void) {
 }
 
 void ccpSetup(void) {
-  PR2 = 99; // Frecuencia PWM de 50 kHz con Fosc = 20 MHz y prescaler 1:1
+  PR2 = 99; // Frecuencia PWM de aproximadamente 1 kHz (con Fosc = 1 MHz)
+  //^ Sólo a este le mueves we
 
   CCP1CON = 0x8C;
-  setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%
+  setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%);
 }
 
 void actualizarT2CON(void) {
@@ -89,7 +89,7 @@ void externalInterrupt(void) {
 }
 
 void main(void) {
-  // Usando oscilador externo HS de 20 MHz, no se requiere configurar OSCCON
+
 
   adcSetup();
 
@@ -108,13 +108,12 @@ void main(void) {
 
   while (TRUE) {
     int16 adcValue;
-    int16 maxDuty = (((int16)PR2 + 1) * 4) - 1;
 
     adcValue = readADC0();
-    adcValue = (int16)(((long)adcValue * maxDuty) / 1023);
-    if (adcValue < 0) {
-      adcValue = 0;
+    if (adcValue > (((int16)PR2 + 1) * 4 - 1)) {
+      adcValue = (((int16)PR2 + 1) * 4 - 1);
     }
+    //^ Esto es para evitar que el valor del ADC exceda el máximo permitido por el periodo actual del PWM, causando que truene.
 
     setPWM1Duty10(adcValue);
 
