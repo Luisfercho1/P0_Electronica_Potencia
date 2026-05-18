@@ -3,7 +3,7 @@ ROM used:   676/32768 (2%)
             676/32768 (2%) including unused fragments
 
             0.5 Average locations per line
-            12.8 Average locations per statement
+            12.5 Average locations per statement
 
 RAM used:   26/2048 (1%) at main() level
             34/2048 (2%) worst case
@@ -13,37 +13,37 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  129    53 100  main.c
+  130    54 100  main.c
   837     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\18F4550.h
   382     0   0  registries.h
 ----- -----
- 1348    53 Total
+ 1349    54 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
-0     40   3    1             @delay_ms1
+0     42   3    1             @delay_ms1
 0     38   3    0             @const913
 0     74   5    5   166  4.4  setPWM1Duty10
-0     30   2    0    94  1.7  adcSetup
-0     54   4    4   197  4.3  readADC0
+0     28   2    0    94  1.7  adcSetup
+0     52   4    4   197  4.3  readADC0
 0     58   4    2   129  3.0  ccpSetup
 0     28   2    1    98  2.5  actualizarT2CON
 0     14   1    0    94  1.7  enableExternalInterrupts
 0     20   1    0   102  3.3  externalInterrupt
-0    174  13    2   470  5.0  MAIN
+0    176  13    2   497  5.0  MAIN
  Inline         0             @cinit1
 
 Program metrics:
     Functions               8
-    Statements              53
-    Comments                494
-    Volume (V)              2159
+    Statements              54
+    Comments                496
+    Volume (V)              2194
     Difficulty (D)          25.7
-    Effort to implement (E) 55458
-    Time to implement (T)   51 minutes
+    Effort to implement (E) 56451
+    Time to implement (T)   52 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   3
-    Maintainability (MI)    92
+    Maintainability (MI)    93
 
  Segment     Used  Free
 -----------  ----  ----

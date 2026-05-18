@@ -327,24 +327,24 @@ ROM Allocation:
 0000BC  actualizarT2CON
 0000D8  externalInterrupt
 0000EC  adcSetup
-00010A  setPWM1Duty10
-000154  ccpSetup
-00018E  enableExternalInterrupts
-00019C  readADC0
-0001D2  @delay_ms1
-0001FA  MAIN
-0001FA  @cinit1
-00020E  @cinit2
+000108  setPWM1Duty10
+000152  ccpSetup
+00018C  enableExternalInterrupts
+00019A  readADC0
+0001CE  @delay_ms1
+0001F8  MAIN
+0001F8  @cinit1
+00020C  @cinit2
 
 Project Directory:
     C:\Users\kiri1\AUTOMATIZACION\P0_Electronica_Potencia\
 
 Project Files:
-    main.c                                                  [17-may.-26 19:40  CRC=ACC9749B]
+    main.c                                                  [18-may.-26 16:14  CRC=28677513]
     ..\..\..\..\Program Files (x86)\PICC\devices\18F4550.h  [12-nov.-13 14:35  CRC=5337E248]
-    registries.h                                            [17-may.-26 19:40  CRC=BAA5B1A3]
+    registries.h                                            [18-may.-26 16:03  CRC=BAA5B1A3]
 
-Source signature=754CBA29
+Source signature=F0EABAA1
 
 Units:
     main (main)

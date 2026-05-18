@@ -2,7 +2,7 @@
 #device ADC = 10
 #fuses HS, PLL1, CPUDIV1, NOWDT, NOPROTECT, NOLVP, NOMCLR
 
-#use delay(clock = 20000000)
+#use delay(crystal = 8M, clock = 24M)
 
 #include "registries.h"
 
@@ -51,17 +51,17 @@ int16 readADC0(void) {
 }
 
 void ccpSetup(void) {
-  PR2 = 99; // Frecuencia PWM de aproximadamente 1 kHz (con Fosc = 1 MHz)
+  PR2 = 119; // Frecuencia PWM de aproximadamente 50 kHz (con Fosc = 24 MHz y prescaler 1:1)
   //^ Sólo a este le mueves we
 
   CCP1CON = 0x8E; // Modo PWM, con P1A y P1B salidas moduladas y con  dead-band control
 
   // Dead-band = 2us
-  // 1 cuenta = 200ns con Fosc=20MHz
-  // 10 cuentas = 2us
-  ECCP1DEL = 10; // Dead-band de aprozimadamente 2 us (con Fosc = 20 MHz)
+  // 1 cuenta = 166.7ns con Fosc=24MHz
+  // 12 cuentas ≈ 2us
+  ECCP1DEL = 12; // Dead-band de aproximadamente 2 us (con Fosc = 24 MHz)
 
-  setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%);
+  setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%
 }
 
 void actualizarT2CON(void) {
@@ -100,8 +100,9 @@ void main(void) {
   adcSetup();
 
   TRISC2 = 0;
+  TRISC1 = 0; // P1B complementary output
   TRISB2 = 0;
-  TRISD5 = 0;
+  TRISD5 = 0  ;
 
   LATB2 = 0;
 
@@ -121,7 +122,7 @@ void main(void) {
     }
     //^ Esto es para evitar que el valor del ADC exceda el máximo permitido por el periodo actual del PWM, causando que truene.
 
-    setPWM1Duty10(adcValue);
+    setPWM1Duty10(adcValue); // Ciclo de trabajo del 50% para pruebas
 
     delay_ms(10);
   }
