@@ -22,23 +22,21 @@
 014     @INTERRUPT_AREA
 015     @INTERRUPT_AREA
 016     @INTERRUPT_AREA
-017     @INTERRUPT_AREA
-018     @INTERRUPT_AREA
-019     @INTERRUPT_AREA
-01A     prescalerIndex
-01B-01C MAIN.adcValue
-01D-01E readADC0.result
-01D     @delay_ms1.P1
-01D     ccpSetup.@SCRATCH1
-01D     MAIN.@SCRATCH1
-01E     ccpSetup.@SCRATCH2
-01E     MAIN.@SCRATCH2
-01F-020 setPWM1Duty10.duty
-01F     readADC0.@SCRATCH1
-020     readADC0.@SCRATCH2
-021     setPWM1Duty10.@SCRATCH1
-022     setPWM1Duty10.@SCRATCH2
-023     setPWM1Duty10.@SCRATCH3
+017     prescalerIndex
+018-019 MAIN.adcValue
+01A-01B readADC0.result
+01A     @delay_ms1.P1
+01A     ccpSetup.@SCRATCH1
+01A     MAIN.@SCRATCH1
+01B     ccpSetup.@SCRATCH2
+01B     MAIN.@SCRATCH2
+01C-01D setPWM1Duty10.duty
+01C     readADC0.@SCRATCH1
+01D     readADC0.@SCRATCH2
+01E     setPWM1Duty10.@SCRATCH1
+01F     setPWM1Duty10.@SCRATCH2
+020     setPWM1Duty10.@SCRATCH3
+021     actualizarT2CON.@SCRATCH1
 F80     PORTA
 F80.0   PORTA0
 F80.1   PORTA1
@@ -324,29 +322,29 @@ FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
 FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-0000AE  prescalerBits.call
-0000BE  prescalerBits.data
-0000C2  actualizarT2CON
-0000D4  externalInterrupt
-0000E8  adcSetup
-000106  setPWM1Duty10
-000150  ccpSetup
-00018A  enableExternalInterrupts
-000198  readADC0
-0001CE  @delay_ms1
-0001F6  MAIN
-0001F6  @cinit1
-00020A  @cinit2
+000096  prescalerBits.call
+0000B8  prescalerBits.data
+0000BC  actualizarT2CON
+0000D8  externalInterrupt
+0000EC  adcSetup
+00010A  setPWM1Duty10
+000154  ccpSetup
+00018E  enableExternalInterrupts
+00019C  readADC0
+0001D2  @delay_ms1
+0001FA  MAIN
+0001FA  @cinit1
+00020E  @cinit2
 
 Project Directory:
-    D:\AUTOMATIZACION\P0_Electronica_Potencia\
+    C:\Users\kiri1\AUTOMATIZACION\P0_Electronica_Potencia\
 
 Project Files:
-    main.c                                                  [17-may.-26 19:29  CRC=8FF053E1]
-    C:\Program Files (x86)\PICC\devices\18F4550.h           [18-abr.-14 16:57  CRC=68697302]
-    registries.h                                            [17-may.-26 19:23  CRC=BAA5B1A3]
+    main.c                                                  [17-may.-26 19:40  CRC=ACC9749B]
+    ..\..\..\..\Program Files (x86)\PICC\devices\18F4550.h  [12-nov.-13 14:35  CRC=5337E248]
+    registries.h                                            [17-may.-26 19:40  CRC=BAA5B1A3]
 
-Source signature=6DA52A29
+Source signature=754CBA29
 
 Units:
     main (main)
@@ -358,7 +356,6 @@ Compiler Settings:
     Opt Level:      9
     Short,Int,Long: UNSIGNED: 1,8,16
     Float,Double:   32,32
-    Compile Mode:       CCS5
 
 Output Files:
     Errors:      main.err

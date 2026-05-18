@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.025, 41992               17-may.-26 19:29
+CCS PCH C Compiler, Version 5.015, 5967               17-may.-26 19:41
 
-               Filename:   D:\AUTOMATIZACION\P0_Electronica_Potencia\main.lst
+               Filename:   C:\Users\kiri1\AUTOMATIZACION\P0_Electronica_Potencia\main.lst
 
-               ROM used:   672 bytes (2%)
-                           Largest free fragment is 32092
-               RAM used:   29 (1%) at main() level
-                           36 (2%) worst case
+               ROM used:   676 bytes (2%)
+                           Largest free fragment is 32088
+               RAM used:   26 (1%) at main() level
+                           34 (2%) worst case
                Stack used: 5 locations (2 in main + 3 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   01F6
+0000:  GOTO   01FA
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -25,38 +25,32 @@ CCS PCH C Compiler, Version 5.025, 41992               17-may.-26 19:29
 002C:  MOVFF  FF3,12
 0030:  MOVFF  FF4,13
 0034:  MOVFF  FFA,14
-0038:  MOVFF  FF5,15
-003C:  MOVFF  FF6,16
-0040:  MOVFF  FF7,17
-0044:  MOVFF  00,0E
-0048:  MOVFF  01,0F
-004C:  MOVFF  02,10
-0050:  MOVFF  03,11
-0054:  BTFSS  FF2.4
-0056:  GOTO   0060
-005A:  BTFSC  FF2.1
-005C:  GOTO   00D4
-0060:  MOVFF  0E,00
-0064:  MOVFF  0F,01
-0068:  MOVFF  10,02
-006C:  MOVFF  11,03
-0070:  MOVFF  0C,FE9
-0074:  MOVFF  07,FEA
-0078:  BSF    07.7
-007A:  MOVFF  08,FE1
-007E:  MOVFF  09,FE2
-0082:  MOVFF  0A,FD9
-0086:  MOVFF  0B,FDA
-008A:  MOVFF  12,FF3
-008E:  MOVFF  13,FF4
-0092:  MOVFF  14,FFA
-0096:  MOVFF  15,FF5
-009A:  MOVFF  16,FF6
-009E:  MOVFF  17,FF7
-00A2:  MOVF   04,W
-00A4:  MOVFF  06,FE0
-00A8:  MOVFF  05,FD8
-00AC:  RETFIE 0
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  FF2.4
+004A:  GOTO   0054
+004E:  BTFSC  FF2.1
+0050:  GOTO   00D8
+0054:  MOVFF  0E,00
+0058:  MOVFF  0F,01
+005C:  MOVFF  10,02
+0060:  MOVFF  11,03
+0064:  MOVFF  0C,FE9
+0068:  MOVFF  07,FEA
+006C:  BSF    07.7
+006E:  MOVFF  08,FE1
+0072:  MOVFF  09,FE2
+0076:  MOVFF  0A,FD9
+007A:  MOVFF  0B,FDA
+007E:  MOVFF  12,FF3
+0082:  MOVFF  13,FF4
+0086:  MOVFF  14,FFA
+008A:  MOVF   04,W
+008C:  MOVFF  06,FE0
+0090:  MOVFF  05,FD8
+0094:  RETFIE 0
 .................... #include <18F4550.h> 
 .................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
 .................... /////////////////////////////////////////////////////////////////////////// 
@@ -69,16 +63,24 @@ CCS PCH C Compiler, Version 5.025, 41992               17-may.-26 19:29
 .................... //// form are not restricted in any way.                               //// 
 .................... /////////////////////////////////////////////////////////////////////////// 
 .................... #device PIC18F4550 
-00AE:  CLRF   FF7
-00B0:  ADDLW  BE
-00B2:  MOVWF  FF6
-00B4:  MOVLW  00
-00B6:  ADDWFC FF7,F
-00B8:  TBLRD*+
-00BA:  MOVF   FF5,W
-00BC:  RETURN 0
-00BE:  DATA 00,01
-00C0:  DATA 02,00
+0096:  BTFSS  07.7
+0098:  BRA    00A0
+009A:  MOVFF  FF2,0D
+009E:  BCF    FF2.7
+00A0:  CLRF   FF7
+00A2:  ADDLW  B8
+00A4:  MOVWF  FF6
+00A6:  MOVLW  00
+00A8:  ADDWFC FF7,F
+00AA:  TBLRD*+
+00AC:  MOVF   FF5,W
+00AE:  BTFSS  07.7
+00B0:  BRA    00B6
+00B2:  BTFSC  0D.7
+00B4:  BSF    FF2.7
+00B6:  RETURN 0
+00B8:  DATA 00,01
+00BA:  DATA 02,00
 ....................  
 .................... #list 
 ....................  
@@ -87,25 +89,25 @@ CCS PCH C Compiler, Version 5.025, 41992               17-may.-26 19:29
 ....................  
 .................... #use delay(clock = 20000000) 
 *
-01CE:  CLRF   FEA
-01D0:  MOVLW  1D
-01D2:  MOVWF  FE9
-01D4:  MOVF   FEF,W
-01D6:  BZ    01F2
-01D8:  MOVLW  06
-01DA:  MOVWF  01
-01DC:  CLRF   00
-01DE:  DECFSZ 00,F
-01E0:  BRA    01DE
-01E2:  DECFSZ 01,F
-01E4:  BRA    01DC
-01E6:  MOVLW  7B
-01E8:  MOVWF  00
-01EA:  DECFSZ 00,F
-01EC:  BRA    01EA
-01EE:  DECFSZ FEF,F
-01F0:  BRA    01D8
-01F2:  GOTO   02A0 (RETURN)
+01D2:  CLRF   FEA
+01D4:  MOVLW  1A
+01D6:  MOVWF  FE9
+01D8:  MOVF   FEF,W
+01DA:  BZ    01F6
+01DC:  MOVLW  06
+01DE:  MOVWF  01
+01E0:  CLRF   00
+01E2:  DECFSZ 00,F
+01E4:  BRA    01E2
+01E6:  DECFSZ 01,F
+01E8:  BRA    01E0
+01EA:  MOVLW  7B
+01EC:  MOVWF  00
+01EE:  DECFSZ 00,F
+01F0:  BRA    01EE
+01F2:  DECFSZ FEF,F
+01F4:  BRA    01DC
+01F6:  GOTO   02A4 (RETURN)
 ....................  
 .................... #include "registries.h" 
 .................... #ifndef _REQUIRED_REGISTRIES//Guardia de inclusión en caso de que pragma once no funcione 
@@ -502,72 +504,72 @@ CCS PCH C Compiler, Version 5.025, 41992               17-may.-26 19:29
 .................... void setPWM1Duty10(int16 duty) { 
 ....................   if (duty > 1023) { 
 *
-0106:  MOVF   20,W
-0108:  SUBLW  03
-010A:  BC    0112
+010A:  MOVF   1D,W
+010C:  SUBLW  03
+010E:  BC    0116
 ....................     duty = 1023; 
-010C:  MOVLW  03
-010E:  MOVWF  20
-0110:  SETF   1F
+0110:  MOVLW  03
+0112:  MOVWF  1D
+0114:  SETF   1C
 ....................   } 
 ....................  
 ....................   CCPR1L = duty >> 2; 
-0112:  RRCF   20,W
-0114:  MOVWF  03
-0116:  RRCF   1F,W
-0118:  MOVWF  02
-011A:  RRCF   03,F
-011C:  RRCF   02,F
-011E:  MOVFF  02,FBE
+0116:  RRCF   1D,W
+0118:  MOVWF  03
+011A:  RRCF   1C,W
+011C:  MOVWF  02
+011E:  RRCF   03,F
+0120:  RRCF   02,F
+0122:  MOVFF  02,FBE
 ....................  
 ....................   CCP1CON = (CCP1CON & 0b11001111) | ((duty & 0b11) << 4); 
-0122:  MOVF   FBD,W
-0124:  ANDLW  CF
-0126:  MOVWF  21
-0128:  MOVF   1F,W
-012A:  ANDLW  03
-012C:  MOVWF  22
-012E:  CLRF   23
-0130:  RLCF   22,W
-0132:  MOVWF  02
-0134:  RLCF   23,W
-0136:  MOVWF  03
-0138:  RLCF   02,F
-013A:  RLCF   03,F
+0126:  MOVF   FBD,W
+0128:  ANDLW  CF
+012A:  MOVWF  1E
+012C:  MOVF   1C,W
+012E:  ANDLW  03
+0130:  MOVWF  1F
+0132:  CLRF   20
+0134:  RLCF   1F,W
+0136:  MOVWF  02
+0138:  RLCF   20,W
+013A:  MOVWF  03
 013C:  RLCF   02,F
 013E:  RLCF   03,F
 0140:  RLCF   02,F
 0142:  RLCF   03,F
-0144:  MOVLW  F0
-0146:  ANDWF  02,F
-0148:  MOVF   02,W
-014A:  IORWF  21,W
-014C:  MOVWF  FBD
-014E:  RETURN 0
+0144:  RLCF   02,F
+0146:  RLCF   03,F
+0148:  MOVLW  F0
+014A:  ANDWF  02,F
+014C:  MOVF   02,W
+014E:  IORWF  1E,W
+0150:  MOVWF  FBD
+0152:  RETURN 0
 .................... } 
 ....................  
 .................... void adcSetup(void) { 
 ....................   TRISA0 = 1; 
 *
-00E8:  BSF    F92.0
+00EC:  BSF    F92.0
 ....................   ADCON1 = 0x0E; 
-00EA:  MOVLW  0E
-00EC:  MOVWF  FC1
+00EE:  MOVLW  0E
+00F0:  MOVWF  FC1
 ....................   ADCON2 = 0b10010001; 
-00EE:  MOVLW  91
-00F0:  MOVWF  FC0
+00F2:  MOVLW  91
+00F4:  MOVWF  FC0
 ....................   ADCON0 = 0b00000001; 
-00F2:  MOVLW  01
-00F4:  MOVWF  FC2
+00F6:  MOVLW  01
+00F8:  MOVWF  FC2
 ....................  
 ....................   delay_us(50); 
-00F6:  MOVLW  52
-00F8:  MOVWF  00
-00FA:  DECFSZ 00,F
-00FC:  BRA    00FA
-00FE:  BRA    0100
-0100:  NOP   
-0102:  GOTO   020C (RETURN)
+00FA:  MOVLW  52
+00FC:  MOVWF  00
+00FE:  DECFSZ 00,F
+0100:  BRA    00FE
+0102:  BRA    0104
+0104:  NOP   
+0106:  GOTO   0210 (RETURN)
 .................... } 
 ....................  
 .................... int16 readADC0(void) { 
@@ -575,248 +577,255 @@ CCS PCH C Compiler, Version 5.025, 41992               17-may.-26 19:29
 ....................  
 ....................   ADCON0 = (ADCON0 & 0b11000011) | 0b00000000; 
 *
-0198:  MOVF   FC2,W
-019A:  ANDLW  C3
-019C:  MOVWF  FC2
+019C:  MOVF   FC2,W
+019E:  ANDLW  C3
+01A0:  MOVWF  FC2
 ....................  
 ....................   delay_us(20); 
-019E:  MOVLW  20
-01A0:  MOVWF  00
-01A2:  DECFSZ 00,F
-01A4:  BRA    01A2
-01A6:  BRA    01A8
-01A8:  NOP   
+01A2:  MOVLW  20
+01A4:  MOVWF  00
+01A6:  DECFSZ 00,F
+01A8:  BRA    01A6
+01AA:  BRA    01AC
+01AC:  NOP   
 ....................  
 ....................   ADONE = 1; 
-01AA:  BSF    FC2.1
+01AE:  BSF    FC2.1
 ....................  
 ....................   while (ADONE) { 
-01AC:  BTFSS  FC2.1
-01AE:  BRA    01B2
-01B0:  BRA    01AC
+01B0:  BTFSS  FC2.1
+01B2:  BRA    01B6
+01B4:  BRA    01B0
 ....................   } 
 ....................  
 ....................   result = ((int16)ADRESH << 8) | ADRESL; 
-01B2:  MOVFF  FC4,1F
-01B6:  CLRF   1F
-01B8:  MOVF   1F,W
-01BA:  IORWF  FC3,W
-01BC:  MOVWF  1D
-01BE:  MOVFF  FC4,1E
+01B6:  MOVFF  FC4,1C
+01BA:  CLRF   1C
+01BC:  MOVF   1C,W
+01BE:  IORWF  FC3,W
+01C0:  MOVWF  1A
+01C2:  MOVFF  FC4,1B
 ....................  
 ....................   return result; 
-01C2:  MOVFF  1D,01
-01C6:  MOVFF  1E,02
-01CA:  GOTO   022A (RETURN)
+01C6:  MOVFF  1A,01
+01CA:  MOVFF  1B,02
+01CE:  GOTO   022E (RETURN)
 .................... } 
 ....................  
 .................... void ccpSetup(void) { 
 ....................   PR2 = 99; // Frecuencia PWM de aproximadamente 1 kHz (con Fosc = 1 MHz) 
 *
-0150:  MOVLW  63
-0152:  MOVWF  FCB
+0154:  MOVLW  63
+0156:  MOVWF  FCB
 ....................   //^ Sólo a este le mueves we 
 ....................  
 ....................   CCP1CON = 0x8E; // Modo PWM, con P1A y P1B salidas moduladas y con  dead-band control 
-0154:  MOVLW  8E
-0156:  MOVWF  FBD
+0158:  MOVLW  8E
+015A:  MOVWF  FBD
 ....................  
+....................   // Dead-band = 2us 
+....................   // 1 cuenta = 200ns con Fosc=20MHz 
+....................   // 10 cuentas = 2us 
 ....................   ECCP1DEL = 10; // Dead-band de aprozimadamente 2 us (con Fosc = 20 MHz) 
-0158:  MOVLW  0A
-015A:  MOVWF  FB7
+015C:  MOVLW  0A
+015E:  MOVWF  FB7
 ....................  
 ....................   setPWM1Duty10((((int16)PR2 + 1) * 4) / 2); // Ciclo de trabajo inicial del 50%); 
-015C:  CLRF   1E
-015E:  MOVFF  FCB,1D
-0162:  MOVLW  01
-0164:  ADDWF  1D,F
-0166:  MOVLW  00
-0168:  ADDWFC 1E,F
-016A:  RLCF   1D,F
-016C:  RLCF   1E,F
-016E:  RLCF   1D,F
-0170:  RLCF   1E,F
-0172:  MOVLW  FC
-0174:  ANDWF  1D,F
-0176:  BCF    FD8.0
-0178:  RRCF   1E,F
-017A:  RRCF   1D,F
-017C:  MOVFF  1E,20
-0180:  MOVFF  1D,1F
-0184:  RCALL  0106
-0186:  GOTO   0216 (RETURN)
+0160:  CLRF   1B
+0162:  MOVFF  FCB,1A
+0166:  MOVLW  01
+0168:  ADDWF  1A,F
+016A:  MOVLW  00
+016C:  ADDWFC 1B,F
+016E:  RLCF   1A,F
+0170:  RLCF   1B,F
+0172:  RLCF   1A,F
+0174:  RLCF   1B,F
+0176:  MOVLW  FC
+0178:  ANDWF  1A,F
+017A:  BCF    FD8.0
+017C:  RRCF   1B,F
+017E:  RRCF   1A,F
+0180:  MOVFF  1B,1D
+0184:  MOVFF  1A,1C
+0188:  RCALL  010A
+018A:  GOTO   021A (RETURN)
 .................... } 
 ....................  
 .................... void actualizarT2CON(void) { 
 ....................   TMR2ON = 0; 
 *
-00C2:  BCF    FCA.2
+00BC:  BCF    FCA.2
 ....................   T2CON = 0x04 | prescalerBits[prescalerIndex]; 
-00C4:  CLRF   03
-00C6:  MOVF   1A,W
-00C8:  RCALL  00AE
-00CA:  IORLW  04
-00CC:  MOVWF  FCA
+00BE:  CLRF   03
+00C0:  MOVF   17,W
+00C2:  MOVFF  FF2,21
+00C6:  BCF    FF2.7
+00C8:  RCALL  0096
+00CA:  BTFSC  21.7
+00CC:  BSF    FF2.7
+00CE:  IORLW  04
+00D0:  MOVWF  FCA
 ....................  
 ....................   TMR2 = 0; 
-00CE:  CLRF   FCC
+00D2:  CLRF   FCC
 ....................   TMR2IF = 0; 
-00D0:  BCF    F9E.1
-00D2:  RETURN 0
+00D4:  BCF    F9E.1
+00D6:  RETURN 0
 .................... } 
 ....................  
 .................... void enableExternalInterrupts(void) { 
 ....................   TRISB0 = 1; 
 *
-018A:  BSF    F93.0
+018E:  BSF    F93.0
 ....................   INT0IF = 0; 
-018C:  BCF    FF2.1
+0190:  BCF    FF2.1
 ....................   INT0IE = 1; 
-018E:  BSF    FF2.4
+0192:  BSF    FF2.4
 ....................   INTEDG0 = 1; 
-0190:  BSF    FF1.6
+0194:  BSF    FF1.6
 ....................  
 ....................   GIE = 1; 
-0192:  BSF    FF2.7
-0194:  GOTO   0228 (RETURN)
+0196:  BSF    FF2.7
+0198:  GOTO   022C (RETURN)
 .................... } 
 ....................  
 .................... #INT_EXT 
 .................... void externalInterrupt(void) { 
 ....................   LATB2 = !LATB2; 
 *
-00D4:  BTG    F8A.2
+00D8:  BTG    F8A.2
 ....................  
 ....................   prescalerIndex++; 
-00D6:  INCF   1A,F
+00DA:  INCF   17,F
 ....................  
 ....................   if (prescalerIndex >= 3) { 
-00D8:  MOVF   1A,W
-00DA:  SUBLW  02
-00DC:  BC    00E0
+00DC:  MOVF   17,W
+00DE:  SUBLW  02
+00E0:  BC    00E4
 ....................     prescalerIndex = 0; 
-00DE:  CLRF   1A
+00E2:  CLRF   17
 ....................   } 
 ....................  
 ....................   actualizarT2CON(); 
-00E0:  RCALL  00C2
-00E2:  BCF    FF2.1
-00E4:  GOTO   0060
+00E4:  RCALL  00BC
+00E6:  BCF    FF2.1
+00E8:  GOTO   0054
 .................... } 
 ....................  
 .................... void main(void) { 
 *
-01F6:  CLRF   FF8
-01F8:  BCF    FD0.7
-01FA:  BSF    07.7
-01FC:  CLRF   1A
-01FE:  MOVF   FC1,W
-0200:  ANDLW  C0
-0202:  IORLW  0F
-0204:  MOVWF  FC1
-0206:  MOVLW  07
-0208:  MOVWF  FB4
+01FA:  CLRF   FF8
+01FC:  BCF    FD0.7
+01FE:  BSF    07.7
+0200:  CLRF   17
+0202:  MOVF   FC1,W
+0204:  ANDLW  C0
+0206:  IORLW  0F
+0208:  MOVWF  FC1
+020A:  MOVLW  07
+020C:  MOVWF  FB4
 ....................  
 ....................  
 ....................   adcSetup(); 
-020A:  BRA    00E8
+020E:  BRA    00EC
 ....................  
 ....................   TRISC2 = 0; 
-020C:  BCF    F94.2
+0210:  BCF    F94.2
 ....................   TRISB2 = 0; 
-020E:  BCF    F93.2
+0212:  BCF    F93.2
 ....................   TRISD5 = 0; 
-0210:  BCF    F95.5
+0214:  BCF    F95.5
 ....................  
 ....................   LATB2 = 0; 
-0212:  BCF    F8A.2
+0216:  BCF    F8A.2
 ....................  
 ....................   ccpSetup(); 
-0214:  BRA    0150
+0218:  BRA    0154
 ....................  
 ....................   prescalerIndex = 0; 
-0216:  CLRF   1A
-0218:  CLRF   19
-021A:  BTFSC  FF2.7
-021C:  BSF    19.7
-021E:  BCF    FF2.7
+021A:  CLRF   17
+021C:  CLRF   16
+021E:  BTFSC  FF2.7
+0220:  BSF    16.7
+0222:  BCF    FF2.7
 ....................   actualizarT2CON(); 
-0220:  RCALL  00C2
-0222:  BTFSC  19.7
-0224:  BSF    FF2.7
+0224:  RCALL  00BC
+0226:  BTFSC  16.7
+0228:  BSF    FF2.7
 ....................  
 ....................   enableExternalInterrupts(); 
-0226:  BRA    018A
+022A:  BRA    018E
 ....................  
 ....................   while (TRUE) { 
 ....................     int16 adcValue; 
 ....................  
 ....................     adcValue = readADC0(); 
-0228:  BRA    0198
-022A:  MOVFF  02,1C
-022E:  MOVFF  01,1B
+022C:  BRA    019C
+022E:  MOVFF  02,19
+0232:  MOVFF  01,18
 ....................     if (adcValue > (((int16)PR2 + 1) * 4 - 1)) { 
-0232:  CLRF   1E
-0234:  MOVFF  FCB,1D
-0238:  MOVLW  01
-023A:  ADDWF  1D,F
-023C:  MOVLW  00
-023E:  ADDWFC 1E,F
-0240:  RLCF   1D,F
-0242:  RLCF   1E,F
-0244:  RLCF   1D,F
-0246:  RLCF   1E,F
-0248:  MOVLW  FC
-024A:  ANDWF  1D,F
-024C:  MOVLW  01
-024E:  SUBWF  1D,W
-0250:  MOVWF  00
-0252:  MOVLW  00
-0254:  SUBWFB 1E,W
-0256:  MOVWF  03
-0258:  MOVFF  00,01
-025C:  MOVF   03,W
-025E:  SUBWF  1C,W
-0260:  BNC   0290
-0262:  BNZ   026A
-0264:  MOVF   1B,W
-0266:  SUBWF  01,W
-0268:  BC    0290
+0236:  CLRF   1B
+0238:  MOVFF  FCB,1A
+023C:  MOVLW  01
+023E:  ADDWF  1A,F
+0240:  MOVLW  00
+0242:  ADDWFC 1B,F
+0244:  RLCF   1A,F
+0246:  RLCF   1B,F
+0248:  RLCF   1A,F
+024A:  RLCF   1B,F
+024C:  MOVLW  FC
+024E:  ANDWF  1A,F
+0250:  MOVLW  01
+0252:  SUBWF  1A,W
+0254:  MOVWF  00
+0256:  MOVLW  00
+0258:  SUBWFB 1B,W
+025A:  MOVWF  03
+025C:  MOVFF  00,01
+0260:  MOVF   03,W
+0262:  SUBWF  19,W
+0264:  BNC   0294
+0266:  BNZ   026E
+0268:  MOVF   18,W
+026A:  SUBWF  01,W
+026C:  BC    0294
 ....................       adcValue = (((int16)PR2 + 1) * 4 - 1); 
-026A:  CLRF   1E
-026C:  MOVFF  FCB,1D
-0270:  MOVLW  01
-0272:  ADDWF  1D,F
-0274:  MOVLW  00
-0276:  ADDWFC 1E,F
-0278:  RLCF   1D,F
-027A:  RLCF   1E,F
-027C:  RLCF   1D,F
-027E:  RLCF   1E,F
-0280:  MOVLW  FC
-0282:  ANDWF  1D,F
-0284:  MOVLW  01
-0286:  SUBWF  1D,W
-0288:  MOVWF  1B
-028A:  MOVLW  00
-028C:  SUBWFB 1E,W
-028E:  MOVWF  1C
+026E:  CLRF   1B
+0270:  MOVFF  FCB,1A
+0274:  MOVLW  01
+0276:  ADDWF  1A,F
+0278:  MOVLW  00
+027A:  ADDWFC 1B,F
+027C:  RLCF   1A,F
+027E:  RLCF   1B,F
+0280:  RLCF   1A,F
+0282:  RLCF   1B,F
+0284:  MOVLW  FC
+0286:  ANDWF  1A,F
+0288:  MOVLW  01
+028A:  SUBWF  1A,W
+028C:  MOVWF  18
+028E:  MOVLW  00
+0290:  SUBWFB 1B,W
+0292:  MOVWF  19
 ....................     } 
 ....................     //^ Esto es para evitar que el valor del ADC exceda el máximo permitido por el periodo actual del PWM, causando que truene. 
 ....................  
 ....................     setPWM1Duty10(adcValue); 
-0290:  MOVFF  1C,20
-0294:  MOVFF  1B,1F
-0298:  RCALL  0106
+0294:  MOVFF  19,1D
+0298:  MOVFF  18,1C
+029C:  RCALL  010A
 ....................  
 ....................     delay_ms(10); 
-029A:  MOVLW  0A
-029C:  MOVWF  1D
-029E:  BRA    01CE
-02A0:  BRA    0228
+029E:  MOVLW  0A
+02A0:  MOVWF  1A
+02A2:  BRA    01D2
+02A4:  BRA    022C
 ....................   } 
 .................... } 
-02A2:  SLEEP 
+02A6:  SLEEP 
 
 Configuration Fuses:
    Word  1: CC20   PLL1 CPUDIV1 USBDIV HS FCMEN IESO
